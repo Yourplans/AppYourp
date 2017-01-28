@@ -12,5 +12,6 @@ public class MainActivity extends AppCompatActivity {
 
         String nombre = "Cesar";
         String datos = "HOla mundo ";
+        String maria = "MariaDB";
     }
 }
