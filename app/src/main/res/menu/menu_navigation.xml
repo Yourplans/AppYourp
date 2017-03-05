@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:icon="@mipmap/turismo"
+        android:title="@string/turismo"
+        ></item>
+    <item
+        android:icon="@mipmap/hotel"
+        android:title="@string/hote"
+        ></item>
+    <item
+        android:icon="@mipmap/restaurante"
+        android:title="@string/restaurantes"
+        ></item>
+    <item
+        android:icon="@mipmap/deportes"
+        android:title="@string/deportes"
+        ></item>
+    <item
+        android:icon="@mipmap/discotecas"
+        android:title="@string/noche"
+        ></item>
+
+
+</menu>

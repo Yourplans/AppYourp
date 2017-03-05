@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">AppYourp</string>
+    <string name="facebook_app_id">1100717206614869</string>
+    <string name="action_settings">Cerrar Sesión</string>
+    <string name="cancel_login">cancel</string>
+    <string name="error_login">error</string>
+    <string name="firebase_error_login">firebase_error</string>
+    <string name="turismo">Turismo</string>
+    <string name="hote">Hoteles</string>
+    <string name="restaurantes">Restaurantes</string>
+    <string name="deportes">Deportes</string>
+    <string name="noche">Noche</string>
+
 </resources>
