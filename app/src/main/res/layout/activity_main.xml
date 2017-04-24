@@ -3,14 +3,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:design="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:background="#efefef"
     android:layout_height="match_parent"
+
+    android:fitsSystemWindows="true"
     tools:context="com.apps.appyourp.activities.MainActivity">
 
-<include layout="@layout/toolbar"
-    android:id="@+id/toolbar"></include>
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <include layout="@layout/toolbar"
+                 android:id="@+id/toolbar"></include>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_main" />
 
     <android.support.design.widget.BottomNavigationView
         android:layout_width="match_parent"
@@ -20,5 +29,5 @@
         design:menu="@menu/menu_navigation"
         ></android.support.design.widget.BottomNavigationView>
 
-        </android.support.design.widget.CoordinatorLayout>
+</android.support.design.widget.CoordinatorLayout>
 

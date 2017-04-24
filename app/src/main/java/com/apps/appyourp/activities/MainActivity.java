@@ -6,6 +6,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,7 +18,10 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.apps.appyourp.R;
+import com.apps.appyourp.adapters.AdapterHome;
 import com.apps.appyourp.login.Login;
+import com.apps.appyourp.objects.FirebaseReference;
+import com.apps.appyourp.objects.SitiosVO;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -26,6 +31,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 /**
@@ -39,6 +50,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private GoogleApiClient googleApiClient;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
     ImageButton option;
+
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    RecyclerView.Adapter adapter;
+    ArrayList<SitiosVO> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +93,32 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 }
             }
         };
+
+        recyclerView= (RecyclerView) findViewById(R.id.recycler);
+        arrayList=new ArrayList<>();
+        layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        adapter=new AdapterHome(arrayList,getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        database.getReference("city/armenia/site/events/").addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                arrayList.removeAll(arrayList);
+                for (DataSnapshot snapshot:
+                     dataSnapshot.getChildren()) {
+
+                    SitiosVO sitiosVO=snapshot.getValue(SitiosVO.class);
+                    arrayList.add(sitiosVO);
+                    recyclerView.setAdapter( adapter );
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        } );
 
 
     }
