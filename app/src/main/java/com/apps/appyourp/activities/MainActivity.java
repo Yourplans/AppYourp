@@ -41,6 +41,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Rangel on 04/03/2017.
+ * Main Activity
  */
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
